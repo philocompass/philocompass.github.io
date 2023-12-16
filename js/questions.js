@@ -31,17 +31,17 @@ const questions = [
     },
     {
         text: "Do you believe in the existence of free will or is everything predetermined?",
-        dichotomy: "Free Will vs. Determinism",
+        dichotomy: "Libertarianism vs. Determinism",
         options: ["Free Will", "Predetermined"]
     },
     {
         text: "Do you think our choices are completely our own or shaped by external factors?",
-        dichotomy: "Free Will vs. Determinism",
+        dichotomy: "Libertarianism vs. Determinism",
         options: ["Completely Our Own", "Shaped by External Factors"]
     },
     {
         text: "Should people be blamed for their actions since they're free to choose or not since their actions are already set?",
-        dichotomy: "Free Will vs. Determinism",
+        dichotomy: "Libertarianism vs. Determinism",
         options: ["Blamed since Free to Choose", "Not Blamed since Actions Already Set"]
     },
     {
@@ -226,17 +226,17 @@ const questions = [
     },
     {
         text: "Do you see probability as the chance of something happening over many tries or as how strongly you believe it will happen?",
-        dichotomy: "Frequentist Probability vs. Bayesian Probability",
+        dichotomy: "Frequentism vs. Bayesianism",
         options: ["Chance Over Many Tries", "How Strongly You Believe It Will Happen"]
     },
     {
         text: "Is probability about how often something has happened before or about what you think will happen based on what you know?",
-        dichotomy: "Frequentist Probability vs. Bayesian Probability",
+        dichotomy: "Frequentism vs. Bayesianism",
         options: ["How Often It Has Happened Before", "What You Think Will Happen"]
     },
     {
         text: "Do you think of probability as a fixed number based on facts or as something that changes with new information?",
-        dichotomy: "Frequentist Probability vs. Bayesian Probability",
+        dichotomy: "Frequentism vs. Bayesianism",
         options: ["Fixed Number Based on Facts", "Changes with New Information"]
     },
     {
