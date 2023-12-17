@@ -15,10 +15,15 @@ function shuffleIndices(length) {
     return indices;
 }
 
-function loadQuestion(currentIndex) {
+async function loadQuestion(currentIndex) {
     if (currentIndex >= shuffledIndices.length) {
-        sendDataToGoogleSheet();
-        showResults();
+        try {
+            await sendDataToGoogleSheet();
+            showResults();
+        } catch (error) {
+            console.error('Error sending data:', error);
+            // Handle error or show a message to the user
+        }
         return;
     }
 
@@ -37,6 +42,30 @@ function loadQuestion(currentIndex) {
         optionsContainer.appendChild(button);
     });
 }
+
+
+// function loadQuestion(currentIndex) {
+//     if (currentIndex >= shuffledIndices.length) {
+//         sendDataToGoogleSheet();
+//         // showResults();
+//         return;
+//     }
+
+//     const questionIndex = shuffledIndices[currentIndex];
+//     const question = questions[questionIndex];
+//     const questionContainer = document.getElementById('question-text');
+//     questionContainer.textContent = question.text;
+
+//     const optionsContainer = document.getElementById('answer-options');
+//     optionsContainer.innerHTML = '';
+
+//     question.options.forEach((option, optionIndex) => {
+//         const button = document.createElement('button');
+//         button.textContent = option;
+//         button.onclick = () => handleAnswer(questionIndex, optionIndex, currentIndex + 1);
+//         optionsContainer.appendChild(button);
+//     });
+// }
 
 function handleAnswer(questionIndex, selectedOptionIndex, nextIndex) {
     answers[questionIndex] = selectedOptionIndex;
@@ -63,24 +92,51 @@ function showResults() {
 }
 
 
+// function sendDataToGoogleSheet() {
+//     var data = {
+//         'userId': userId,
+//         'answers': answers
+//     };
+
+//     var options = {
+//         method: 'post',
+//         mode: 'no-cors',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(data)
+//     };
+
+//     fetch('https://script.google.com/macros/s/AKfycbzs8zmdc5K705ueImBJjsAKts4zrWDFuloI3W8PkGTn4y5pVg2TNeYV_KswlQMTHV2l/exec', options)
+//         .then(() => console.log("Data sent successfully"))  // Adjusted to not expect a JSON response
+//         .catch(error => console.error('Error:', error));
+
+// }
+
 function sendDataToGoogleSheet() {
-    var data = {
-        'userId': userId,
-        'answers': answers
-    };
+    return new Promise((resolve, reject) => {
+        var data = {
+            'userId': userId,
+            'answers': answers
+        };
 
-    var options = {
-        method: 'post',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    };
+        var options = {
+            method: 'post',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        };
 
-    fetch('https://script.google.com/macros/s/AKfycbzs8zmdc5K705ueImBJjsAKts4zrWDFuloI3W8PkGTn4y5pVg2TNeYV_KswlQMTHV2l/exec', options)
-        .then(() => console.log("Data sent successfully"))  // Adjusted to not expect a JSON response
-        .catch(error => console.error('Error:', error));
-
+        fetch('https://script.google.com/macros/s/AKfycbzs8zmdc5K705ueImBJjsAKts4zrWDFuloI3W8PkGTn4y5pVg2TNeYV_KswlQMTHV2l/exec', options)
+            .then(() => {
+                console.log("Data sent successfully");
+                resolve();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                reject(error);
+            });
+    });
 }
+
 
 function generateRandomUserId() {
     return Math.random().toString(36).slice(2, 9);
