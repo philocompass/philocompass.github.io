@@ -27,6 +27,11 @@ async function loadQuestion(currentIndex) {
         return;
     }
 
+    // Update progress bar
+    const totalQuestions = questions.length;
+    const progressPercentage = (currentIndex / totalQuestions) * 100;
+    document.getElementById('progress-bar').style.width = progressPercentage + '%';
+
     const questionIndex = shuffledIndices[currentIndex];
     const question = questions[questionIndex];
     const questionContainer = document.getElementById('question-text');

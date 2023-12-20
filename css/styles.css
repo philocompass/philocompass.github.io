@@ -264,3 +264,17 @@ main {
 .social-share .btn:hover {
     background-color: var(--pastel-green);
 }
+
+#progress-container {
+    width: 100%;
+    background-color: var(--light-grey);
+    border-radius: 5px;
+    margin: 0 0;
+}
+
+#progress-bar {
+    height: 20px;
+    background-color: var(--pastel-green);
+    width: 0%;
+    border-radius: 5px;
+}
