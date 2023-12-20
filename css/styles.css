@@ -278,3 +278,14 @@ main {
     width: 0%;
     border-radius: 5px;
 }
+
+#disclaimer {
+    background-color: var(--pastel-blue); /* Light background, or choose your color */
+    padding: 20px;
+    text-align: center; /* Center the text */
+}
+
+#disclaimer p {
+    color: var(--light-grey);
+    margin: 0 0 20px 0; /* Spacing for the paragraph */
+}
